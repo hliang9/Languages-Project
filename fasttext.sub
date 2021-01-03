@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH -J fasttext
+#SBATCH -o log/fasttext.o%j
+#SBATCH -e log/fasttext.e%j
+#SBATCH -n 1
+#SBATCH --get-user-env
+#SBATCH --mem=16000
+#SBATCH --cpus-per-task=12
+#SBATCH --partition=default_cpu
+#SBATCH -t 2-0
+
+INPUT1=pre1660.txt
+#INPUT=all_10k.txt
+OUTPUT1=embeddings/sgns_v1_v2_pre1600
+INPUT2=post1660.txt
+OUTPUT2=embeddings/sgns_v1_v2_post1660
+
+/share/magpie/software/fastText/fasttext cbow -input $INPUT1 -output $OUTPUT1 -maxn 0 -minCount 50
+/share/magpie/software/fastText/fasttext cbow -input $INPUT2 -output $OUTPUT2 -maxn 0 -minCount 50
+
