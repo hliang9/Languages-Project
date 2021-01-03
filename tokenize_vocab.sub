@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -J tokenizing
+#SBATCH -o log/tokenizing.o%j
+#SBATCH -e log/tokenizing.e%j
+#SBATCH -n 1
+#SBATCH --get-user-env
+#SBATCH --mem=16000
+#SBATCH --cpus-per-task=12
+#SBATCH --partition=default_cpu
+#SBATCH -t 24:00:00
+
+#INPUT=all_text_v1_v2_nopunct.txt
+#OUTPUT=progress_tokenizing.txt
+
+python strip_punct.py
+#$INPUT > $OUTPUT
